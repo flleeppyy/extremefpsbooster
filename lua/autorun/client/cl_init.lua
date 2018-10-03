@@ -39,7 +39,11 @@ local function extremefpsrun()
 				LocalPlayer():ConCommand("tf_particles_disable_weather 1")
 				LocalPlayer():ConCommand("cl_detaildist 0")
 				LocalPlayer():ConCommand("cl_detailfade 0")
+				if (extremefps.config.drawmonitors) then
+				LocalPlayer():ConCommand("cl_drawmonitors 1")
+				else
 				LocalPlayer():ConCommand("cl_drawmonitors 0")
+				end
 				LocalPlayer():ConCommand("cl_ejectbrass 0")
 				if (extremefps.config.facial.enabled) then
 				if (extremefps.config.facial.eyes) then
