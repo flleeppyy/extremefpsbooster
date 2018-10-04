@@ -33,6 +33,13 @@ local function extremefpsrun()
 				LocalPlayer():ConCommand("rope_subdiv 0")
 				LocalPlayer():ConCommand("rope_wind_dist 0")
 				else
+				LocalPlayer():ConCommand("rope_averagelight 1")
+				LocalPlayer():ConCommand("rope_collide 1")
+				LocalPlayer():ConCommand("rope_rendersolid 1")
+				LocalPlayer():ConCommand("rope_shake 1")
+				LocalPlayer():ConCommand("rope_smooth 1")
+				LocalPlayer():ConCommand("rope_subdiv 1")
+				LocalPlayer():ConCommand("rope_wind_disd 1")
 				end
 				LocalPlayer():ConCommand("r_staticprop_lod 4")
 				LocalPlayer():ConCommand("r_maxsampledist 1")
@@ -49,12 +56,15 @@ local function extremefpsrun()
 				if (extremefps.config.facial.eyes) then
 				LocalPlayer():ConCommand("r_eyes 0")
 			
-			    else
-				-- I was gonna put something here.. i totally forgot what is was though. Ill put it in in the next version if i can remember what it was.
+			    	else
+				-- Ok finally got to this!
+				LocalPlayer():ConCommand("r_eyes 1")
 				end
 				LocalPlayer():ConCommand("r_flex 0")
 				LocalPlayer():ConCommand("r_teeth 0")
 				else
+				LocalPlayer():ConCommand("r_flex 1")
+				LocalPlayer():ConCommand("r_teeth 1")
 				end
 				LocalPlayer():ConCommand("mat_filterlightmaps 1")
 				LocalPlayer():ConCommand("mat_filtertextures 1")
@@ -62,19 +72,26 @@ local function extremefpsrun()
 				LocalPlayer():ConCommand("mat_motion_blur_enabled 0")
 				-- LocalPlayer():ConCommand("mat_parallaxmap 0") -- Disabled because it can crash players game
 				if (extremefps.config.shadows) then
+				if (extremefps.config.shadows) then
 				LocalPlayer():ConCommand("r_shadowmaxrendered 0")
+				else
+				LocalPlayer():ConCommand("r_shadowmaxrendered 1")
+				end
 				if (extremefps.config.shadowsflashlight) then
 				LocalPlayer():ConCommand("r_shadows 0")
 				else
 				LocalPlayer():ConCommand("r_shadows 1")
 				end
-				LocalPlayer():ConCommand("r_shadowrendertotexture 0")
-				LocalPlayer():ConCommand("mat_shadowstate 0")
 				else
+				--[[ Ill work on this later
+				LocalPlayer():ConCommand("r_shadowrendertotexture 0")
+				LocalPlayer():ConCommand("mat_shadowstate 0)
+				--]]
 				end
 				if (extremefps.config.skybox3d) then
 				LocalPlayer():ConCommand("r_3dsky 0")
 				else
+				LocalPlayer():ConCommand("r_3dsky 1")
 				end
 				if (extremefps.config.rlod) then
 				LocalPlayer():ConCommand("r_lod 2")
@@ -96,9 +113,12 @@ local function extremefpsrun()
 				if (extremefps.config.sprays) then
 				LocalPlayer():ConCommand("cl_playerspraydisable 1")
 				LocalPlayer():ConCommand("r_spray_lifetime 0")
+				else
+				LocalPlayer():ConCommand("cl_playerspraydisable 0")
+				LocalPlayer():ConCommand("r_spray_lifetime 2")
 				end
 				if (extremefps.config.debug) then
-                LocalPlayer():ConCommand("net_graph 2")
+               			LocalPlayer():ConCommand("net_graph 2")
 				LocalPlayer():ConCommand("cl_showpos 1")
 				LocalPlayer():ConCommand("cl_showfps 1")
 				else
