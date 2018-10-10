@@ -7,6 +7,6 @@ Its a little bit better than other fps boosters on the workshop or Gmodstore.
 Basically it runs various console commands that edit Graphical aspects of the game.
 Im always adding new commands to the client file. That means you should update the addon every now and then.
 
-## Can i donate?
+## Can I donate?
 
-Yes you can! You can doante by [Clicking here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7K22S4VCW47C)
+Yes you can! You can donate by [Clicking here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7K22S4VCW47C)
