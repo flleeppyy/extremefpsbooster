@@ -36,7 +36,7 @@ extremefps.config.drawmonitors = true -- I suggest this is kept true because if 
 --[[
 Enabling Debug Does the following things:
 Turns on the FPS counter in top right
-and turns on cl_showpos (Showing your posisition in the mapo and your speed velocity.
+and turns on cl_showpos (Showing your position in the map and your speed velocity.
 Turns on net_graph to 2
 
 Useful for testing what settings you should enable in the config
