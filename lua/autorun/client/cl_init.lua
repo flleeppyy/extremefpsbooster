@@ -1,3 +1,4 @@
+AddCSLuaFile()
 local function extremefpsrun()
     ply = LocalPlayer()
 
