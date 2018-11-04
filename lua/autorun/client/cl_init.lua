@@ -26,7 +26,8 @@ local function extremefpsrun()
         ply:ConCommand("r_waterdrawrefraction 1")
         ply:ConCommand("r_waterforceexpensive 0")
         ply:ConCommand("r_waterforcereflectentities 0")
-
+	    ply:ConCommand("cl_forcepreload 1")
+	    ply:ConCommand("mat_forcehardwaresync 0")
         if (extremefps.config.ropes) then
             ply:ConCommand("rope_averagelight 0")
             ply:ConCommand("rope_collide 0")
@@ -44,7 +45,6 @@ local function extremefpsrun()
             ply:ConCommand("rope_subdiv 1")
             ply:ConCommand("rope_wind_disd 1")
         end
-
         ply:ConCommand("r_staticprop_lod 4")
         ply:ConCommand("r_maxsampledist 1")
         ply:ConCommand("tf_particles_disable_weather 1")
@@ -63,15 +63,14 @@ local function extremefpsrun()
             if (extremefps.config.facial.eyes) then
                 ply:ConCommand("r_eyes 0")
             else
-                -- Ok finally got to this!
                 ply:ConCommand("r_eyes 1")
             end
-
             ply:ConCommand("r_flex 0")
             ply:ConCommand("r_teeth 0")
         else
             ply:ConCommand("r_flex 1")
             ply:ConCommand("r_teeth 1")
+            ply:ConCommand("r_eyes 1")
         end
 
         ply:ConCommand("mat_filterlightmaps 1")
@@ -79,24 +78,22 @@ local function extremefpsrun()
         ply:ConCommand("mat_hdr_level 0") -- Returns with: Not playing a local game.
         ply:ConCommand("mat_motion_blur_enabled 0")
 
-        -- ply:ConCommand("mat_parallaxmap 0") -- Disabled because it can crash players game
         if (extremefps.config.shadows) then
             if (extremefps.config.shadows) then
                 ply:ConCommand("r_shadowmaxrendered 0")
             else
                 ply:ConCommand("r_shadowmaxrendered 1")
             end
-
+            ply:ConCommand("mat_shadowstate 0")
             if (extremefps.config.shadowsflashlight) then
                 ply:ConCommand("r_shadows 0")
             else
                 ply:ConCommand("r_shadows 1")
             end
-            --[[ else
-            Ill work on this later
-				ply:ConCommand("r_shadowrendertotexture 0")
-				ply:ConCommand("mat_shadowstate 0)
-				--]]
+        else
+			ply:ConCommand("r_shadowrendertotexture 1")
+			ply:ConCommand("mat_shadowstate 1")
+			ply:ConCommand("r_shadows 1")
         end
 
         if (extremefps.config.skybox3d) then
@@ -105,7 +102,7 @@ local function extremefpsrun()
             ply:ConCommand("r_3dsky 1")
         end
 
-        if (extremefps.config.rlod) then
+        if (extremefps.config.rlod) then -- Tends to fuck up TDM Cars
             ply:ConCommand("r_lod 2")
         else
             ply:ConCommand("r_lod 0")
@@ -116,14 +113,11 @@ local function extremefpsrun()
         else
             ply:ConCommand("g_ragdoll_fadespeed 200")
         end
-
-        --[[
-				ply:ConCommand("mat_colorcorrection 0")
-				ply:ConCommand("mat_disable_bloom 1")
-				ply:ConCommand("mat_disable_fancy_blending 1")
-				ply:ConCommand("mat_disable_lightwarp 1")
-				ply:ConCommand("mat_envmapsize 8")
-				--]]
+		ply:ConCommand("mat_colorcorrection 0")
+		ply:ConCommand("mat_disable_bloom 1")
+		ply:ConCommand("mat_disable_fancy_blending 1")
+		ply:ConCommand("mat_disable_lightwarp 1")
+		ply:ConCommand("mat_envmapsize 8")
         if (extremefps.config.sprays) then
             ply:ConCommand("cl_playerspraydisable 1")
             ply:ConCommand("r_spray_lifetime 0")
@@ -132,24 +126,24 @@ local function extremefpsrun()
             ply:ConCommand("r_spray_lifetime 2")
         end
 
-        if (extremefps.config.debug) then
-            ply:ConCommand("net_graph 2")
-            ply:ConCommand("cl_showpos 1")
-            ply:ConCommand("cl_showfps 1")
-        else
-            ply:ConCommand("net_graph 0")
-            ply:ConCommand("cl_showpos 0")
-            ply:ConCommand("cl_showfps 0")
-        end
-
-        ply:ConCommand("play HL1/fvox/activated.wav")
-        print("Extreme FPS Booster has been enabled!")
+    if (extremefps.config.debug) then -- If players already have this enabled on join, its going to get disabled unfortunantly.
+        ply:ConCommand("net_graph 2")
+        ply:ConCommand("cl_showpos 1")
+        ply:ConCommand("cl_showfps 1")
     else
-        print("Extreme FPS Booster has not been enabled!")
+        ply:ConCommand("net_graph 0")
+        ply:ConCommand("cl_showpos 0")
+        ply:ConCommand("cl_showfps 0")
+    end
+	if (extremefps.config.sound) then
+        ply:ConCommand("play HL1/fvox/activated.wav")
+	end
+    print("Extreme FPS Booster has been enabled!")
+else
+    print("Extreme FPS Booster has not been enabled!")
     end
 end
 
 net.Receive("ExtremeFpsBoost", function()
-    -- print("[ExtremeFPS] Reciving Net String from Server")
-    extremefpsrun()
+    extremefpsrun() -- I wish i could make this function call more fancyer but i cant.
 end)
