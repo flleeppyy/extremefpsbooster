@@ -144,6 +144,4 @@ else
     end
 end
 
-net.Receive("ExtremeFpsBoost", function()
-    extremefpsrun() -- I wish i could make this function call more fancyer but i cant.
-end)
+net.Receive("ExtremeFpsBoost", extremefpsrun())
